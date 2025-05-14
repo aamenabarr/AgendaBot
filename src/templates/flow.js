@@ -2,11 +2,11 @@ import { addKeyword, EVENTS } from '@builderbot/bot';
 import { createMeetEvent } from '../services/googleCalendar.js';
 import { chat } from '../services/openAI.js';
 
-const ALLOWED_NUMBER = '56942016813';
+const ALLOWED_NUMBERS = (process.env.ALLOWED_NUMBERS || "{}").replace(/[{}\s]/g, '').split(',');
 
 const flow = addKeyword(EVENTS.WELCOME)
     .addAction(async (ctx, ctxFn) => {
-        if (!ctx.from || !ctx.from.includes(ALLOWED_NUMBER)) {
+        if (!ctx.from || !ALLOWED_NUMBERS.some(num => ctx.from.includes(num))) {
             return null;
         }
 

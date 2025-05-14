@@ -1,19 +1,16 @@
 import { google } from 'googleapis';
 import { config } from '../config/index.js';
 
-const oAuth2Client = new google.auth.OAuth2(config.oauth2_client_id, config.oauth2_client_secret, config.redirect_uri);
+const oAuth2Client = new google.auth.OAuth2(config.OAUTH2_CLIENT_ID, config.OAUTH2_CLIENT_SECRET);
 const oauthCredentials = {
-    access_token: config.google_access_token,
-    refresh_token: config.google_refresh_token,
-    scope: config.google_scope,
-    token_type: config.google_token_type,
-    expiry_date: config.google_expiry_date
+    access_token: config.GOOGLE_ACCESS_TOKEN,
+    refresh_token: config.GOOGLE_REFRESH_TOKEN,
 };
 
 export async function createMeetEvent({ summary, description, startDateTime, endDateTime, attendeesEmails }) {
     oAuth2Client.setCredentials(oauthCredentials);
     const calendar = google.calendar({ version: 'v3', auth: oAuth2Client });
-    const calendarId = config.google_calendar_id || 'primary';
+    const calendarId = config.GOOGLE_CALENDAR_ID;
 
     const event = {
         summary,

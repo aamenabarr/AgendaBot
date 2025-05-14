@@ -1,8 +1,8 @@
 import OpenAI from "openai";
 import { config } from '../config/index.js';
 
-const openaiApiKey = config.openai_apikey;
-const assistant = config.assistant;
+const openaiApiKey = config.OPENAI_API_KEY;
+const assistant = config.ASSISTANT;
 
 export const chat = async (question, thread = null) => {
     try {
