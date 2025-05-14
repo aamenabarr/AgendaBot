@@ -1,16 +1,16 @@
 import "dotenv/config";
 
 export const config = {
-    // Agregar todas las variables de entorno
     PORT: process.env.PORT || 3008,
     provider: process.env.provider,
-    // Meta
-    jwtToken: process.env.jwtToken,
-    numberId: process.env.numberId,
-    verifyToken: process.env.verifyToken,
-    version: "v20.0",
-    // OpenAI
     openai_apikey: process.env.openai_apikey,
-    model: process.env.model,
     assistant: process.env.assistant,
+    google_calendar_id: process.env.google_calendar_id,
+    oauth2_client_id: process.env.oauth2_client_id,
+    oauth2_client_secret: process.env.oauth2_client_secret,
+    google_access_token: process.env.google_access_token,
+    google_refresh_token: process.env.google_refresh_token,
+    google_token_type: process.env.google_token_type,
+    google_scope: process.env.google_scope,
+    google_expiry_date: process.env.google_expiry_date,
 };
