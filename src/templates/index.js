@@ -1,6 +1,6 @@
 import { createFlow } from '@builderbot/bot';
-import { welcomeFlow } from './welcomeFlow.js'
+import { flow} from './flow.js'
 
 export default createFlow([
-    welcomeFlow,
+    flow
 ]);
