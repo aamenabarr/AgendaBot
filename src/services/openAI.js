@@ -7,11 +7,15 @@ const assistant = config.ASSISTANT;
 export const chat = async (question, thread = null) => {
     try {
         const openai = new OpenAI({ apiKey: openaiApiKey });
-        thread = thread || await openai.beta.threads.create();
+        let content = question;
+        if (!thread) {
+            thread = await openai.beta.threads.create();
+            content += " La fecha actual es " + new Date().toLocaleString('es-ES', { timeZone: 'America/Santiago' });
+        }
 
         await openai.beta.threads.messages.create(thread.id, {
             role: "user",
-            content: question
+            content: content,
         });
 
         const run = await openai.beta.threads.runs.createAndPoll(thread.id, {
